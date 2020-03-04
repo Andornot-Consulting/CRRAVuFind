@@ -25,6 +25,17 @@ return array (
           ),
         ),
       ),
+      'auth' => 
+      array (
+        'factories' => 
+        array (
+          'CRRA_Module\\Auth\\MemberClicks' => 'Zend\\ServiceManager\\Factory\\InvokableFactory',
+        ),
+        'aliases' => 
+        array (
+          'memberclicks' => 'CRRA_Module\\Auth\\MemberClicks',
+        ),
+      ),
     ),
   ),
 );

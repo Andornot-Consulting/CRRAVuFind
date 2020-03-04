@@ -1,0 +1,24 @@
+<footer class="hidden-print">
+  <div class="footer-container">
+    <div class="footer-column">
+        <p><a href="<?=$this->url('browse-home')?>"><?=$this->transEsc('Browse the Catalog')?></a></p>
+        <p><a href="<?=$this->url('alphabrowse-home')?>"><?=$this->transEsc('Browse Alphabetically')?></a></p>
+        <p><a href="<?=$this->url('search-advanced')?>"><?=$this->transEsc('Advanced Search')?></a></p>
+        <p><a href="<?=$this->url('search-history')?>"><?=$this->transEsc('Search History')?></a></p>
+        <p><a href="<?=$this->url('help-home')?>?topic=search&amp;_=<?=time() ?>" data-lightbox class="help-link"><?=$this->transEsc('Search Tips')?></a></p>
+        <p><a href="https://catholicresearch.org/">Return to main CRRA website</a></p>
+    </div>
+    <div class="footer-column">
+		<p>&copy; Catholic Research Resources Alliance</p>
+		<p><a href="https://www.catholicresearch.org/contact-us">Contact us</a></p>
+		<p>230 Washington Avenue Extension</p>
+		<p>Suite 101</p>
+		<p>Albany, NY 12203</p>
+		<p>United States</p>
+    </div>
+  </div>
+  <div class="poweredby">
+    <?=$this->layout()->poweredBy ?>
+  </div>
+</footer>
+

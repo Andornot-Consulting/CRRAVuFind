@@ -61,8 +61,8 @@
 	<table class="table">
 	  <tr>
 		<td width="100%">
-		<?php foreach ($localFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
+		<?php foreach ($remoteFindingAidUrl as $current): ?>
+			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
 		<?php endforeach; ?>
 		</td>
 		</tr>

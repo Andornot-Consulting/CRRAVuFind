@@ -110,8 +110,8 @@
 	<?php endif; ?>
 
 	<?php $remoteFindingAidUrl = $this->driver->tryMethod('getRemoteFindingAidUrl'); if ($remoteFindingAidUrl): ?>
-		<?php foreach ($localFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
+		<?php foreach ($remoteFindingAidUrl as $current): ?>
+			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
 		<?php endforeach; ?>
 	<?php endif; ?>
 

@@ -14,10 +14,10 @@
 ?>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-9">
-		<h1>Welcome to the Catholic Portal</h1>
-		<p>The Catholic Research Resources Portal, or "Catholic Portal," provides access to rare, unique and/or uncommon materials in libraries, seminaries, special collections and archives. By electronically bringing together resources in many formats from many collections, the Portal enables easy, effective and global discovery of Catholic research resources.</p>
-	</div>
+    <div class="col-xs-12 col-sm-9">
+        <h1>Welcome to the Catholic Portal</h1>
+        <p>The Catholic Research Resources Portal, or "Catholic Portal," provides access to rare, unique and/or uncommon materials in libraries, seminaries, special collections and archives. By electronically bringing together resources in many formats from many collections, the Portal enables easy, effective and global discovery of Catholic research resources.</p>
+    </div>
 </div>
 <div class="searchHomeContent">
   <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
@@ -27,10 +27,11 @@
 <?=implode('', array_map([$this, 'contentBlock'], $blocks ?? []))?>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-9">
-		<h2>About the Catholic Research Resources Alliance (CRRA)</h2>
-		<p>The CRRA is a collaborative effort initiated by eight Catholic colleges and universities to share their resources electronically with librarians, archivists, researchers, scholars, and the general public, all who are interested in the Catholic experience. The mission of the CRRA is to provide enduring global access to Catholic research resources. Our immediate focus is creating access to those rare, unique and uncommon research materials relating to every aspect of the Catholic experience, which are held by college, university, and seminary libraries and archives in North America.</p>
-		<p><a href="<?=$this->url('content-page', ['page' => 'institutions']) ?>">View Participating Institutions.</a></p>
-		<p><a href="https://www.catholicresearch.org/making-content-available">Learn how to contribute to the portal.</a>
-	</div>
+    <div class="col-xs-12 col-sm-9">
+        <h2>About the Catholic Research Resources Alliance (CRRA)</h2>
+        <p>The CRRA is a collaborative effort initiated by eight Catholic colleges and universities to share their resources electronically with librarians, archivists, researchers, scholars, and the general public, all who are interested in the Catholic experience. The mission of the CRRA is to provide enduring global access to Catholic research resources. Our immediate focus is creating access to those rare, unique and uncommon research materials relating to every aspect of the Catholic experience, which are held by college, university, and seminary libraries and archives in North America.</p>
+        <p><a href="<?=$this->url('content-page', ['page' => 'institutions']) ?>"><?=$this->transEsc('View Participating Institutions')?></a></p>
+        <p><a href="https://www.catholicresearch.org/making-content-available">Learn how to contribute to the portal.</a>
+    </div>
 </div>
+

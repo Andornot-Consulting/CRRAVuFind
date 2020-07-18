@@ -21,51 +21,50 @@
 
 <!-- added library, institution and unique key for CRRA records -->
 <?php $crraLibrary = $this->driver->tryMethod('getCRRALibrary'); if ($crraLibrary): ?>
-	<table class="table table-striped">
-	  <tr>
-		<th><?=$this->transEsc("Location")?>: </th>
-		<td width="50%">
-  			<a href='<?=$this->url('content-page', ['page' => 'institutions']) ?>#<?=$this->driver->tryMethod('getCRRAKey')?>'><?=$crraLibrary?></a>, <?=$this->driver->tryMethod('getCRRAInstitution')?><br />
-  		</td>
-  	  </tr>
-  	 </table>
+    <table class="table table-striped">
+      <tr>
+        <th><?=$this->transEsc("Location")?>: </th>
+        <td width="50%">
+              <a href='<?=$this->url('content-page', ['page' => 'institutions']) ?>#<?=$this->driver->tryMethod('getCRRAKey')?>'><?=$crraLibrary?></a>, <?=$this->driver->tryMethod('getCRRAInstitution')?><br />
+          </td>
+        </tr>
+       </table>
 <?php endif; ?>
 
 <!-- added call number for CRRA records -->
 <?php $callNumber = $this->driver->trymethod( 'getCallNumber'); if($callNumber):?>
   <table class="table">
-	  <tr>
-		<th><?=$this->transEsc("Call Number")?>: </th>
-		<td width="50%">
-		  <?=$callNumber ?>
-		</td>
-		</tr>
-	</table>
-<?php endif; ?>
-
-
-<!-- added finding aid links for CRRA records -->
-<?php $localFindingAidUrl = $this->driver->tryMethod('getLocalFindingAidUrl'); if ($localFindingAidUrl): ?>
-	<table class="table">
-	  <tr>
-		<td width="100%">
-		<?php foreach ($localFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
-		<?php endforeach; ?>
-		</td>
-		</tr>
+      <tr>
+        <th><?=$this->transEsc("Call Number")?>: </th>
+        <td width="50%">
+          <?=$callNumber ?>
+        </td>
+        </tr>
     </table>
 <?php endif; ?>
 
 <?php $remoteFindingAidUrl = $this->driver->tryMethod('getRemoteFindingAidUrl'); if ($remoteFindingAidUrl): ?>
-	<table class="table">
-	  <tr>
-		<td width="100%">
-		<?php foreach ($remoteFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
-		<?php endforeach; ?>
-		</td>
-		</tr>
+    <table class="table">
+      <tr>
+        <td width="100%">
+        <?php foreach ($remoteFindingAidUrl as $current): ?>
+            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
+        <?php endforeach; ?>
+        </td>
+        </tr>
+    </table>
+<?php endif; ?>
+
+<!-- added finding aid links for CRRA records -->
+<?php $localFindingAidUrl = $this->driver->tryMethod('getLocalFindingAidUrl'); if ($localFindingAidUrl): ?>
+    <table class="table">
+      <tr>
+        <td width="100%">
+        <?php foreach ($localFindingAidUrl as $current): ?>
+            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
+        <?php endforeach; ?>
+        </td>
+        </tr>
     </table>
 <?php endif; ?>
 
@@ -186,4 +185,5 @@
     <?php endforeach; ?>
   </table>
 <?php endif; ?>
+
 -->

@@ -98,22 +98,22 @@
       <?php endif; ?>
 
     <!-- modified to include $CRRALibrary and $CRRAInstitution -->
-	  <?php $crraLibrary = $this->driver->tryMethod	('getCRRALibrary'); if ($crraLibrary): ?>	
-	     <strong>Location:</strong> <a href='<?=$this->url('content-page', ['page' => 'institutions']) ?>#<?=$this->driver->tryMethod('getCRRAKey')?>'><?=$crraLibrary?></a>, <?=$this->driver->tryMethod('getCRRAInstitution')?><br />
+      <?php $crraLibrary = $this->driver->tryMethod('getCRRALibrary'); if ($crraLibrary): ?>    
+         <strong>Location:</strong> <a href='<?=$this->url('content-page', ['page' => 'institutions']) ?>#<?=$this->driver->tryMethod('getCRRAKey')?>'><?=$crraLibrary?></a>, <?=$this->driver->tryMethod('getCRRAInstitution')?><br />
       <?php endif; ?>
 
-	<!-- added finding aid links for CRRA records -->
-	<?php $localFindingAidUrl = $this->driver->tryMethod('getLocalFindingAidUrl'); if ($localFindingAidUrl): ?>
-		<?php foreach ($localFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
-		<?php endforeach; ?>
-	<?php endif; ?>
+    <?php $remoteFindingAidUrl = $this->driver->tryMethod('getRemoteFindingAidUrl'); if ($remoteFindingAidUrl): ?>
+        <?php foreach ($remoteFindingAidUrl as $current): ?>
+            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
-	<?php $remoteFindingAidUrl = $this->driver->tryMethod('getRemoteFindingAidUrl'); if ($remoteFindingAidUrl): ?>
-		<?php foreach ($remoteFindingAidUrl as $current): ?>
-			<a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid at owning institution</a><br/>
-		<?php endforeach; ?>
-	<?php endif; ?>
+    <!-- added finding aid links for CRRA records -->
+    <?php $localFindingAidUrl = $this->driver->tryMethod('getLocalFindingAidUrl'); if ($localFindingAidUrl): ?>
+        <?php foreach ($localFindingAidUrl as $current): ?>
+            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current))?>" target="_blank">View Finding Aid in this portal</a><br/>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
       <div class="callnumAndLocation ajax-availability hidden">
         <?php if ($this->driver->supportsAjaxStatus()): ?>
@@ -232,3 +232,4 @@
     <?=$thumbnail ?>
   <?php endif ?>
 </div>
+

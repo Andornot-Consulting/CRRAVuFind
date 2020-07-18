@@ -1,0 +1,21 @@
+<?php
+
+return array (
+  'vufind' =>
+  array (
+    'plugin_managers' =>
+    array (
+      'recorddriver' =>
+      array (
+        'factories' =>
+        array (
+          'CRRA_Module\\RecordDriver\\SolrDefault' => 'CRRA_Module\\RecordDriver\\SolrDefaultFactory',
+        ),
+        'aliases' =>
+        array (
+          'VuFind\\RecordDriver\\SolrDefault' => 'CRRA_Module\\RecordDriver\\SolrDefault',
+        ),
+      ),
+    ),
+  ),
+);

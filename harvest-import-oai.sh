@@ -25,6 +25,17 @@ php /var/www/crra.andornot.com/harvest/harvest_oai.php xul
 #php /var/www/crra.andornot.com/harvest/harvest_oai.php sjn
 #php /var/www/crra.andornot.com/harvest/harvest_oai.php wla
 
+# deletions
+/var/www/crra.andornot.com/harvest/batch-delete.sh day
+/var/www/crra.andornot.com/harvest/batch-delete.sh edc
+/var/www/crra.andornot.com/harvest/batch-delete.sh mar
+/var/www/crra.andornot.com/harvest/batch-delete.sh olv
+/var/www/crra.andornot.com/harvest/batch-delete.sh slu
+/var/www/crra.andornot.com/harvest/batch-delete.sh stm
+/var/www/crra.andornot.com/harvest/batch-delete.sh usd
+/var/www/crra.andornot.com/harvest/batch-delete.sh vil
+/var/www/crra.andornot.com/harvest/batch-delete.sh xul
+
 # then for each source, import the data, using the XSL specified in the .properties file and stored in /import/xsl
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh day day.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh edc edc.properties

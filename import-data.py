@@ -315,6 +315,21 @@ def restartVuFindAlpha():
         errorcount = errorcount + 1
     
     return [errorcount];
+    
+# generate sitemap
+def generateSitemap():
+    logging.info("Harvesting OAI")
+    errorcount = 0
+    
+    cmd = "/var/www/crra.andornot.com/generate-sitemap.sh"
+    try:
+        output = subprocess.check_output([cmd])
+    except subprocess.CalledProcessError as e:
+        logging.error("Error Generating Sitemap")
+        logging.error("Error is: " + str(e.output))
+        errorcount = errorcount + 1
+        
+    return [errorcount];    
 
 
 def sendMail(totalfilecount, totalerrorcount):
@@ -397,6 +412,10 @@ totalerrorcount = totalerrorcount + restartresult2[0]
 # harvest OAI
 oairesult = harvestOAI()
 totalerrorcount = totalerrorcount + oairesult[0]
+
+# generate sitemap
+sitemapresult = generateSitemap()
+totalerrorcount = totalerrorcount + sitemapresult[0]
 
 # log error count
 logging.info(str(totalerrorcount) + " total errors")

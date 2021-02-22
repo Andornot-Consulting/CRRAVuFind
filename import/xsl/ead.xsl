@@ -8,7 +8,8 @@
     <xsl:param name="building">My Library</xsl:param>
     <xsl:param name="idprefix">ead_</xsl:param>
     <xsl:param name="htmlroot">/findingaids/</xsl:param>
-
+    <xsl:param name="findingaidfolder">xxx</xsl:param>
+    
     <xsl:template match="ead">
         <add>
             <doc>
@@ -151,6 +152,10 @@
                         <xsl:value-of select="normalize-space(./control/otherrecordid)"/>
                     </field>
                 </xsl:if>
+                <!-- local finding aid urls for XML, XSL and CSS -->                
+				<field name="localfindingaidurl_str_mv">
+					<xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./eadheader/eadid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>
+				</field>                            
             </doc>
         </add>
     </xsl:template>

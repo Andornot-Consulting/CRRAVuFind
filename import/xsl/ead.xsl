@@ -9,7 +9,7 @@
     <xsl:param name="idprefix">ead_</xsl:param>
     <xsl:param name="htmlroot">/findingaids/</xsl:param>
     <xsl:param name="findingaidfolder">xxx</xsl:param>
-    
+
     <xsl:template match="ead">
         <add>
             <doc>
@@ -152,10 +152,17 @@
                         <xsl:value-of select="normalize-space(./control/otherrecordid)"/>
                     </field>
                 </xsl:if>
-                <!-- local finding aid urls for XML, XSL and CSS -->                
-				<field name="localfindingaidurl_str_mv">
-					<xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./eadheader/eadid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>
-				</field>                            
+                <!-- local finding aid urls for XML, XSL and CSS -->
+                <xsl:if test="(string-length(./eadheader/eadid) > 0)">
+                    <field name="localfindingaidurl_str_mv">
+                        <xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./eadheader/eadid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>
+                    </field>
+                </xsl:if>
+                <xsl:if test="(string-length(./control/recordid) > 0)">
+                    <field name="localfindingaidurl_str_mv">
+                        <xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./control/recordid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>
+                    </field>
+                </xsl:if>
             </doc>
         </add>
     </xsl:template>

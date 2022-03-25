@@ -29,7 +29,7 @@ return array (
       array (
         'factories' => 
         array (
-          'CRRA_Module\\Auth\\MemberClicks' => 'Zend\\ServiceManager\\Factory\\InvokableFactory',
+          'CRRA_Module\\Auth\\MemberClicks' => 'Laminas\\ServiceManager\\Factory\\InvokableFactory',
         ),
         'aliases' => 
         array (

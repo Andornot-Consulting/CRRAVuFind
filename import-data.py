@@ -2,7 +2,7 @@
 
 # script to check for new MARC, MARCXML, EAD and PastPerfect data files and import them into VuFind, catch errors, log each step, and email the log if any files were processed
 # also harvest OAI
-# set SENDGRID_API_KEY as an environment variable with relevant API key first
+# set SENDGRID_API_KEY OR POSTMARK_API as an environment variable with relevant API key first
 
 import re
 import os
@@ -318,7 +318,7 @@ def restartVuFindAlpha():
     
 # generate sitemap
 def generateSitemap():
-    logging.info("Harvesting OAI")
+    logging.info("Generating Sitemap")
     errorcount = 0
     
     cmd = "/var/www/crra.andornot.com/generate-sitemap.sh"
@@ -368,6 +368,22 @@ def sendMail(totalfilecount, totalerrorcount):
     except Exception as e:
         logging.error(e)
 
+def sendMailPostmark(totalfilecount, totalerrorcount):
+
+    try:
+        postmark = PostmarkClient(server_token=os.environ.get('POSTMARK_API'))
+
+        attachment = '/var/www/crra.andornot.com/logs/import-data.log'
+
+        postmark.emails.send(
+            From='do-not-reply@andornot.info',
+            To=['jjacobsen@andornot.com'],
+            Subject='CRRA VuFind Data Import Log',
+            HtmlBody='<p>Attached is the most recent data import log for CRRA VuFind.</p><p>Total files processed: ' + str(totalfilecount) + "</p><p>Errors: " + str(totalerrorcount) + " or more (see attached log.)</p>",
+            Attachments=[attachment]
+            )
+    except Exception as e:
+        logging.error(e)
 
 # MAIN
 
@@ -421,7 +437,8 @@ totalerrorcount = totalerrorcount + sitemapresult[0]
 logging.info(str(totalerrorcount) + " total errors")
 
 # send mail
-sendMail(totalfilecount, totalerrorcount)
+#sendMail(totalfilecount, totalerrorcount)
+sendMailPostmark(totalfilecount, totalerrorcount)
 
 # log finish    
 logging.info("Finished CRRA VuFind import process")    

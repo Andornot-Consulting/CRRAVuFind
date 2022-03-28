@@ -12,6 +12,9 @@
   </div>
   <?php if (!isset($this->layout()->renderingError)): ?>
     <div class="collapse navbar-collapse" id="header-collapse">
+	  <div id="titlecell">
+	    <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>" style="text-decoration:none;">Catholic Portal</a>
+  	  </div>    
       <nav>
         <ul class="nav navbar-nav navbar-right flip">
           <?php if ($this->feedback()->tabEnabled()): ?>

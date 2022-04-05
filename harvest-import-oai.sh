@@ -15,6 +15,7 @@ php /var/www/crra.andornot.com/harvest/harvest_oai.php olv
 php /var/www/crra.andornot.com/harvest/harvest_oai.php slu
 php /var/www/crra.andornot.com/harvest/harvest_oai.php stm
 php /var/www/crra.andornot.com/harvest/harvest_oai.php usd
+php /var/www/crra.andornot.com/harvest/harvest_oai.php usf
 php /var/www/crra.andornot.com/harvest/harvest_oai.php vil
 php /var/www/crra.andornot.com/harvest/harvest_oai.php xul
 php /var/www/crra.andornot.com/harvest/harvest_oai.php duq
@@ -34,6 +35,7 @@ php /var/www/crra.andornot.com/harvest/harvest_oai.php duq
 /var/www/crra.andornot.com/harvest/batch-delete.sh slu
 /var/www/crra.andornot.com/harvest/batch-delete.sh stm
 /var/www/crra.andornot.com/harvest/batch-delete.sh usd
+/var/www/crra.andornot.com/harvest/batch-delete.sh usf
 /var/www/crra.andornot.com/harvest/batch-delete.sh vil
 /var/www/crra.andornot.com/harvest/batch-delete.sh xul
 /var/www/crra.andornot.com/harvest/batch-delete.sh duq
@@ -46,6 +48,7 @@ php /var/www/crra.andornot.com/harvest/harvest_oai.php duq
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh slu slu.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh stm stm.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh usd usd.properties
+/var/www/crra.andornot.com/harvest/batch-import-xsl.sh usf usf.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh vil vil.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh xul xul.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh duq duq.properties

@@ -147,6 +147,11 @@
                     </field>
                 </xsl:if>
                 <!-- ead3 -->
+				 <xsl:if test="(string-length(./control/recordid/@instanceurl) > 0)">
+				  <field name="remotefindingaidurl_str_mv">
+					<xsl:value-of select="normalize-space(./control/recordid/@instanceurl)"/>
+				  </field>
+				</xsl:if>                
                 <xsl:if test="./control/otherrecordid/@localtype='url'">
                     <field name="remotefindingaidurl_str_mv">
                         <xsl:value-of select="normalize-space(./control/otherrecordid)"/>

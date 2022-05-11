@@ -7,6 +7,7 @@
     <xsl:output method="xml" indent="yes" encoding="utf-8"/>
     <xsl:param name="institution">My University</xsl:param>
     <xsl:param name="collection">OJS</xsl:param>
+    <xsl:param name="urlPrefix">http</xsl:param>
     <xsl:param name="id_tag_name">identifier</xsl:param>
     <xsl:param name="change_tracking_core">biblio</xsl:param>
     <xsl:param name="change_tracking_date_tag_name"></xsl:param>
@@ -133,11 +134,13 @@
                 </xsl:if>
 
                 <!-- URL -->
-                <xsl:if test="dc:identifier">
-                    <field name="url">
-                        <xsl:value-of select="dc:identifier[normalize-space()]"/>
-                    </field>
-                </xsl:if>
+                <xsl:for-each select="dc:identifier">
+                    <xsl:if test="substring(., 1, string-length($urlPrefix)) = $urlPrefix">
+                        <field name="url">
+                            <xsl:value-of select="." />
+                        </field>
+                    </xsl:if>
+                </xsl:for-each>
 
                 <!-- Work Keys -->
                 <xsl:for-each select="php:function('VuFindWorkKeys::getWorkKeys', '', dc:title[normalize-space()], php:function('VuFind::stripArticles', string(dc:title[normalize-space()])), dc:creator, $workKey_include_regEx, $workKey_exclude_regEx, $workKey_transliterator_rules)/workKey">

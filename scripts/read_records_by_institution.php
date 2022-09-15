@@ -25,7 +25,7 @@ if (is_null($institution_response)) {
 }
 
 if (empty($institution_response['facets']) || empty($institution_response['facets']['institution'])) {
-	print "No building institution data available\n";
+	print "No library institution data available\n";
 	exit();
 }
 
@@ -61,7 +61,7 @@ foreach ($institutions as $institution) {
 	}
 
 	if (empty($format_response['facets']) || empty($format_response['facets']['format'])) {
-		print "No building format data available\n";
+		print "No format data available\n";
 		continue;
 	}
 
@@ -87,58 +87,24 @@ foreach ($institutions as $institution) {
 	$curl_error = curl_error($building_ch);
 	curl_close($building_ch);
 	if ($curl_error) {
-		print "Error retrieving building data: ". $curl_error ."\n";
+		print "Error retrieving library data: ". $curl_error ."\n";
 		continue;
 	}
 
 	$building_response = json_decode($building_response, true);
 	if (is_null($format_response)) {
-		print "Invalid building data JSON\n";
+		print "Invalid library data JSON\n";
 		continue;
 	}
 
 	if (empty($building_response['facets']) || empty($building_response['facets']['building'])) {
-		print "No building format data available\n";
 		continue;
 	}
 
 	$buildings = $building_response['facets']['building'];
-	print "Total by Building:\n";
+	print "Total by Library:\n";
 	foreach ($buildings as $building) {
 		print $building['value'] . ': ' . $building['count'] . "\n";
 	}
 	print "\n";
 }
-
-
-// parse_str($institution_response['facets'])
-
-// $report_file_contents = file_get_contents('VuFind_records_by_institution.json');
-// if ($report_file_contents === false) {
-// 	print "Error opening VuFind report file.\n";
-// 	exit();
-// }
-
-// $report_contents = json_decode($report_file_contents, true);
-// if (!$report_contents) {
-// 	print "Error decoding report contents.\n";
-// 	exit();
-// }
-
-// if (empty($report_contents['facets']) || empty($report_contents['facets']['institution'])) {
-// 	print "Missing facets or institution data.\n";
-// 	exit();
-// }
-
-// $report_csv = fopen("report.csv","w");
-
-// foreach ($report_contents['facets']['institution'] as $key => $row) {
-// 	if ($key == 0) {
-// 		fputcsv($report_csv, array_keys($row));
-// 	}
-// 	fputcsv($report_csv, $row);
-// }
-
-// fclose($report_csv);
-
-//print_r($report_contents);

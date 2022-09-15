@@ -31,7 +31,6 @@ if (empty($institution_response['facets']) || empty($institution_response['facet
 
 $institutions = $institution_response['facets']['institution'];
 foreach ($institutions as $institution) {
-	print "---\n";
 	print "Institution: " . $institution['value'] . "\n";
 	print "---\n";
 	print  'Grand Total: ' . $institution['count'] . "\n\n";
@@ -51,24 +50,27 @@ foreach ($institutions as $institution) {
 	curl_close($format_ch);
 	if ($curl_error) {
 		print "Error retrieving format data: ". $curl_error ."\n";
+		print "\n---\n\n";
 		continue;
 	}
 
 	$format_response = json_decode($format_response, true);
 	if (is_null($format_response)) {
 		print "Invalid format data JSON\n";
+		print "\n---\n\n";
 		continue;
 	}
 
 	if (empty($format_response['facets']) || empty($format_response['facets']['format'])) {
 		print "No format data available\n";
+		print "\n---\n\n";
 		continue;
 	}
 
 	$formats = $format_response['facets']['format'];
 	print "Total by Format:\n";
 	foreach ($formats as $format) {
-		print $format['value'] . ': ' . $format['count'] . "\n";
+		print '- ' . $format['value'] . ': ' . $format['count'] . "\n";
 	}
 	print "\n";
 
@@ -88,23 +90,27 @@ foreach ($institutions as $institution) {
 	curl_close($building_ch);
 	if ($curl_error) {
 		print "Error retrieving library data: ". $curl_error ."\n";
+		print "\n---\n\n";
 		continue;
 	}
 
 	$building_response = json_decode($building_response, true);
 	if (is_null($format_response)) {
 		print "Invalid library data JSON\n";
+		print "\n---\n\n";
 		continue;
 	}
 
 	if (empty($building_response['facets']) || empty($building_response['facets']['building'])) {
+		print "\n\n---\n\n";
 		continue;
 	}
 
 	$buildings = $building_response['facets']['building'];
 	print "Total by Library:\n";
 	foreach ($buildings as $building) {
-		print $building['value'] . ': ' . $building['count'] . "\n";
+		print '- ' . $building['value'] . ': ' . $building['count'] . "\n";
 	}
 	print "\n";
+	print "\n---\n\n";
 }

@@ -1,17 +1,18 @@
 <footer class="hidden-print">
   <div class="footer-container">
     <div class="footer-column">
-        <p><a href="<?=$this->url('browse-home')?>"><?=$this->transEsc('Browse the Catalog')?></a></p>
-        <p><a href="<?=$this->url('alphabrowse-home')?>"><?=$this->transEsc('Browse Alphabetically')?></a></p>
-        <p><a href="<?=$this->url('search-advanced')?>"><?=$this->transEsc('Advanced Search')?></a></p>
-        <p><a href="<?=$this->url('search-history')?>"><?=$this->transEsc('Search History')?></a></p>
-        <p><a href="<?=$this->url('help-home')?>?topic=search&amp;_=<?=time() ?>" data-lightbox class="help-link"><?=$this->transEsc('Search Tips')?></a></p>
-        <p><a href="https://catholicresearch.org/">Return to main CRRA website</a></p>
+        <p><a href="<?=$this->url('browse-home')?>" target="_blank"><?=$this->transEsc('Browse the Catalog')?></a></p>
+        <p><a href="<?=$this->url('alphabrowse-home')?>" target="_blank"><?=$this->transEsc('Browse Alphabetically')?></a></p>
+        <p><a href="<?=$this->url('search-advanced')?>" target="_blank"><?=$this->transEsc('Advanced Search')?></a></p>
+        <p><a href="<?=$this->url('search-history')?>" target="_blank"><?=$this->transEsc('Search History')?></a></p>
+        <p><a href="<?=$this->url('help-home')?>?topic=search&amp;_=<?=time() ?>" data-lightbox class="help-link" target="_blank"><?=$this->transEsc('Search Tips')?></a></p>
+        <p><a href="https://atla.libguides.com/catholic-portal-contribute" target="_blank">Contribute to the Catholic Portal</a></p>
+        <p><a href="https://www.atla.com/learning-engagement/crra/" target="_blank">Return to main CRRA website</a></p>
     </div>
     <div class="footer-column">
         <p>&copy; 2024 Copyright Atla.</p>
         <p>
-		<a href="https://www.catholicresearch.org/ask-us">
+		<a href="https://www.catholicresearch.org/ask-us" target="_blank">
 			<img src="<?=$this->imageLink('Ask-Us-Icon.png')?>" alt="Ask Us"/>
 		</a>
     </div>

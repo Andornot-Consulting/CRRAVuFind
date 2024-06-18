@@ -51,7 +51,7 @@ php /var/www/crra.andornot.com/harvest/harvest_oai.php duq
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh usf usf.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh vil vil.properties
 /var/www/crra.andornot.com/harvest/batch-import-xsl.sh xul xul.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh duq duq.properties
+/var/www/crra.andornot.com/harvest/batch-import-xsl.sh xul duq.properties
 
 # commented out as URL not available so nothing to harvest nor import
 #/var/www/crra.andornot.com/harvest/batch-import-xsl.sh bar bar.properties

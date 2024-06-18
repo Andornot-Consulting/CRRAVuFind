@@ -106,7 +106,6 @@
         <div class="record-versions ajax"></div>
       <?php endif; ?>
 
-
     <!-- modified to include $CRRALibrary and $CRRAInstitution -->
       <?php $crraLibrary = $this->driver->tryMethod('getCRRALibrary'); if ($crraLibrary): ?>    
          <strong>Location:</strong> <a href='<?=$this->url('content-page', ['page' => 'institutions']) ?>#<?=$this->driver->tryMethod('getCRRAKey')?>'><?=$crraLibrary?></a>, <?=$this->driver->tryMethod('getCRRAInstitution')?><br />

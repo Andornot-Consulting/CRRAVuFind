@@ -147,11 +147,6 @@
                     </field>
                 </xsl:if>
                 <!-- ead3 -->
-				 <xsl:if test="(string-length(./control/recordid/@instanceurl) > 0)">
-				  <field name="remotefindingaidurl_str_mv">
-					<xsl:value-of select="normalize-space(./control/recordid/@instanceurl)"/>
-				  </field>
-				</xsl:if>                
                 <xsl:if test="./control/otherrecordid/@localtype='url'">
                     <field name="remotefindingaidurl_str_mv">
                         <xsl:value-of select="normalize-space(./control/otherrecordid)"/>
@@ -163,6 +158,11 @@
                         <xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./eadheader/eadid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>
                     </field>
                 </xsl:if>
+		 <xsl:if test="(string-length(./control/recordid/@instanceurl) > 0)">
+		  <field name="remotefindingaidurl_str_mv">
+		    <xsl:value-of select="normalize-space(./control/recordid/@instanceurl)"/>
+		  </field>
+		</xsl:if>
                 <xsl:if test="(string-length(./control/recordid) > 0)">
                     <field name="localfindingaidurl_str_mv">
                         <xsl:value-of select="$htmlroot"/><xsl:value-of select="$findingaidfolder"/><xsl:text disable-output-escaping="yes">/ead/</xsl:text><xsl:value-of select="normalize-space(./control/recordid)"/><xsl:text disable-output-escaping="yes">.xml</xsl:text>

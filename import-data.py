@@ -15,6 +15,7 @@ from sendgrid.helpers.mail import (
     Mail, Attachment, FileContent, FileName,
     FileType, Disposition, ContentId)
 from sendgrid import SendGridAPIClient
+from postmarker.core import PostmarkClient
 
 
 # set logging
@@ -315,7 +316,8 @@ def restartVuFindAlpha():
         errorcount = errorcount + 1
     
     return [errorcount];
-    
+
+
 # generate sitemap
 def generateSitemap():
     logging.info("Generating Sitemap")
@@ -332,17 +334,17 @@ def generateSitemap():
     return [errorcount];    
 
 
+
 def sendMail(totalfilecount, totalerrorcount):
 
     # log mail send to separate lof file
     
     logging.basicConfig(filename='/var/www/crra.andornot.com/logs/sendmail.log', format='%(asctime)s: %(levelname)s: %(message)s', filemode='w', level=logging.DEBUG)
 
-    #to_emails = [('jjacobsen@andornot.com', 'Jonathan Jacobsen')]
-    to_emails = [('jjacobsen@andornot.com', 'Jonathan Jacobsen'), ('stevelapommeray@gmail.com', 'Steve Lapommeray')]
-
+#    to_emails = [('jjacobsen@andornot.com', 'Jonathan Jacobsen')]
+    to_emails = [('jjacobsen@andornot.com', 'Jonathan Jacobsen'), ('stevelapommeray@gmail.com', 'Steve Lapommeray'), ('jbutler@atla.com', 'Jim Butler'), ('pbuss@atla.com', 'Patrick Buss')]
     message = Mail(
-        from_email='do-not-reply@andornotmail.com',
+        from_email='do-not-reply@andornot.info',
         to_emails=to_emails,
         subject='CRRA VuFind Data Import Log',
         html_content='<p>Attached is the most recent data import log for CRRA VuFind.</p><p>Total files processed: ' + str(totalfilecount) + "</p><p>Errors: " + str(totalerrorcount) + " or more (see attached log.)</p>")
@@ -377,7 +379,8 @@ def sendMailPostmark(totalfilecount, totalerrorcount):
 
         postmark.emails.send(
             From='do-not-reply@andornot.info',
-            To=['jjacobsen@andornot.com'],
+            To=['jjacobsen@andornot.com', 'stevelapommeray@gmail.com', 'jbutler@atla.com', 'pbuss@atla.com'],
+#            To=['jjacobsen@andornot.com'],
             Subject='CRRA VuFind Data Import Log',
             HtmlBody='<p>Attached is the most recent data import log for CRRA VuFind.</p><p>Total files processed: ' + str(totalfilecount) + "</p><p>Errors: " + str(totalerrorcount) + " or more (see attached log.)</p>",
             Attachments=[attachment]

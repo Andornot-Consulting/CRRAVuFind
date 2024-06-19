@@ -5,8 +5,9 @@
       <i class="fa fa-bars"></i>
     </button>
     <div id="bannerlogo">
-        <img src="<?=$this->imageLink('crra_logo_full.png')?>" alt="Catholic Research Resources Alliance"/>
-      </a>
+        <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>" style="text-decoration:none;">
+            <img src="<?=$this->imageLink('crra_logo_full.png')?>" alt="Catholic Research Resources Alliance"/>
+        </a>
     </div>
   </div>
   <?php if (!isset($this->layout()->renderingError)): ?>

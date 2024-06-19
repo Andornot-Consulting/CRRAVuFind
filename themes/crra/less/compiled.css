@@ -1,3 +1,5 @@
+/* Include bootstrap theme's less base */
+/* Important!!! Check compiled css to ensure it is properly loading bootstrap depencencies (mainly FontAwesome) */
 /* #LESS> */
 /*!
  * Bootstrap v3.4.1 (https://getbootstrap.com/)
@@ -6221,8 +6223,8 @@ footer:after {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.eot?v=4.7.0');
-  src: url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../../../../../../themes/bootstrap3/css/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  src: url('../../bootstrap3/css/fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../../bootstrap3/css/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../../bootstrap3/css/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../../bootstrap3/css/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../../bootstrap3/css/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../../bootstrap3/css/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -11399,7 +11401,6 @@ div.holding-notes {
 .odbrand {
   padding: 7px;
 }
-/* Include bootstrap theme's less base */
 body {
   background-color: #E6E6E6;
 }
@@ -11515,5 +11516,15 @@ div#titlecell {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+/* Add "open in new tab" icon to external links */
+a[target="_blank"]:after {
+  font-family: FontAwesome;
+  content: "\f08e";
+  display: inline-block;
+  padding-right: 3px;
+  padding-left: 3px;
+  vertical-align: middle;
+  font-weight: 900;
 }
 /*# sourceMappingURL=compiled.css.map */

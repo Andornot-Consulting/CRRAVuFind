@@ -1,4 +1,6 @@
-@import "../../bootstrap3/less/bootstrap"; /* Include bootstrap theme's less base */
+/* Include bootstrap theme's less base */
+/* Important!!! Check compiled css to ensure it is properly loading bootstrap depencencies (mainly FontAwesome) */
+@import "../../bootstrap3/less/bootstrap";
 
 @image-path: "../../images";
 
@@ -140,4 +142,15 @@ div#titlecell
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* Add "open in new tab" icon to external links */
+a[target="_blank"]:after {
+    font-family: FontAwesome;
+    content: "\f08e";
+    display: inline-block;
+    padding-right: 3px;
+    padding-left: 3px;
+    vertical-align: middle;
+    font-weight: 900;
 }

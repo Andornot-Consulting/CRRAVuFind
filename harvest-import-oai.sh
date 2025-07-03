@@ -1,62 +1,45 @@
-#!/bin/sh
+#!/bin/bash
 
 # set local dir
 export VUFIND_LOCAL_DIR=/var/www/crra.andornot.com/local
 export VUFIND_LOCAL_MODULES=CRRA_Module
 
-# harvest all the OAI specified in /local/harvest/oai.ini
-# php /var/www/crra.andornot.com/harvest/harvest_oai.php
+# start a new log file, then append to it with all other output
+echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting OAI Harvest, Delete and Index" > ./logs/harvest-import-oai.log
+
+# define an array of the 3 character codes representing institutions to harvest (must be defined in oai.ini)
+institutions=("day" "duq" "edc" "mar" "olv" "slu" "stm" "usd" "usf" "vil" "xul")
 
 # harvest OAI from individual institutions:
-php /var/www/crra.andornot.com/harvest/harvest_oai.php day
-php /var/www/crra.andornot.com/harvest/harvest_oai.php edc
-php /var/www/crra.andornot.com/harvest/harvest_oai.php mar
-php /var/www/crra.andornot.com/harvest/harvest_oai.php olv
-php /var/www/crra.andornot.com/harvest/harvest_oai.php slu
-php /var/www/crra.andornot.com/harvest/harvest_oai.php stm
-php /var/www/crra.andornot.com/harvest/harvest_oai.php usd
-php /var/www/crra.andornot.com/harvest/harvest_oai.php usf
-php /var/www/crra.andornot.com/harvest/harvest_oai.php vil
-php /var/www/crra.andornot.com/harvest/harvest_oai.php xul
-php /var/www/crra.andornot.com/harvest/harvest_oai.php duq
-
-# these exist, but the URL does not, so do not attempt to harvest
-#php /var/www/crra.andornot.com/harvest/harvest_oai.php bar
-#php /var/www/crra.andornot.com/harvest/harvest_oai.php cnr
-#php /var/www/crra.andornot.com/harvest/harvest_oai.php luc
-#php /var/www/crra.andornot.com/harvest/harvest_oai.php sjn
-#php /var/www/crra.andornot.com/harvest/harvest_oai.php wla
+echo "---------------------------------" >> ./logs/harvest-import-oai.log
+echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting Harvest" >> ./logs/harvest-import-oai.log
+for institution in "${institutions[@]}"; do
+  echo "---------------------------------" >> ./logs/harvest-import-oai.log
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Harvesting $institution" >> ./logs/harvest-import-oai.log
+  php /var/www/crra.andornot.com/harvest/harvest_oai.php $institution >> ./logs/harvest-import-oai.log 2>&1
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Finished harvesting $institution" >> ./logs/harvest-import-oai.log
+done
 
 # deletions
-/var/www/crra.andornot.com/harvest/batch-delete.sh day
-/var/www/crra.andornot.com/harvest/batch-delete.sh edc
-/var/www/crra.andornot.com/harvest/batch-delete.sh mar
-/var/www/crra.andornot.com/harvest/batch-delete.sh olv
-/var/www/crra.andornot.com/harvest/batch-delete.sh slu
-/var/www/crra.andornot.com/harvest/batch-delete.sh stm
-/var/www/crra.andornot.com/harvest/batch-delete.sh usd
-/var/www/crra.andornot.com/harvest/batch-delete.sh usf
-/var/www/crra.andornot.com/harvest/batch-delete.sh vil
-/var/www/crra.andornot.com/harvest/batch-delete.sh xul
-/var/www/crra.andornot.com/harvest/batch-delete.sh duq
+echo "---------------------------------" >> ./logs/harvest-import-oai.log
+echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting Deletions" >> ./logs/harvest-import-oai.log
+for institution in "${institutions[@]}"; do
+  echo "---------------------------------" >> ./logs/harvest-import-oai.log
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Deleting records for $institution" >> ./logs/harvest-import-oai.log
+  /var/www/crra.andornot.com/harvest/batch-delete.sh $institution >> ./logs/harvest-import-oai.log 2>&1
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Finished deleting records for $institution" >> ./logs/harvest-import-oai.log
+done
 
-# then for each source, import the data, using the XSL specified in the .properties file and stored in /import/xsl
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh day day.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh edc edc.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh mar mar.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh olv olv.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh slu slu.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh stm stm.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh usd usd.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh usf usf.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh vil vil.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh xul xul.properties
-/var/www/crra.andornot.com/harvest/batch-import-xsl.sh duq duq.properties
+# import harvested records into VuFind
+echo "---------------------------------" >> ./logs/harvest-import-oai.log
+echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting Import" >> ./logs/harvest-import-oai.log
+for institution in "${institutions[@]}"; do
+  echo "---------------------------------" >> ./logs/harvest-import-oai.log
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Importing harvested records for $institution" >> ./logs/harvest-import-oai.log
+  /var/www/crra.andornot.com/harvest/batch-import-xsl.sh $institution $institution.properties >> ./logs/harvest-import-oai.log 2>&1
+  echo "$(date +"%Y-%m-%d %H:%M:%S"): Finished importing harvested records for $institution" >> ./logs/harvest-import-oai.log
+done
 
-# commented out as URL not available so nothing to harvest nor import
-#/var/www/crra.andornot.com/harvest/batch-import-xsl.sh bar bar.properties
-#/var/www/crra.andornot.com/harvest/batch-import-xsl.sh cnr cnr.properties
-#/var/www/crra.andornot.com/harvest/batch-import-xsl.sh luc luc.properties
-#/var/www/crra.andornot.com/harvest/batch-import-xsl.sh sjn sjn.properties
-#/var/www/crra.andornot.com/harvest/batch-import-xsl.sh wla wla.properties
-
+# finish log file
+echo "---------------------------------" >> ./logs/harvest-import-oai.log
+echo "$(date +"%Y-%m-%d %H:%M:%S"): Finished OAI Harvest, Delete and Index" >> ./logs/harvest-import-oai.log
